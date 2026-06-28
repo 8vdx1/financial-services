@@ -24,7 +24,7 @@
   "mcpServers": {
     "fundos": {
       "type": "http",
-      "url": "https://mcp.kela.com/mcp"
+      "url": "https://fundos.vantedgeai.com/mcp"
     }
   }
 }
