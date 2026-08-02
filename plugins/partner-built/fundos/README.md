@@ -164,6 +164,19 @@ All commands work without a live FundOS connection. Claude will ask for the requ
 /fundos:fund-snapshot Acme Ventures Fund II
 ```
 
+## Using FundOS from other agent harnesses
+
+This plugin is the **Claude Code** integration and speaks MCP. If you run a different
+harness, check whether it actually loads external MCP servers before assuming this works
+there — several do not.
+
+**QM** (Y Combinator's open-source multiplayer agent harness) is the notable case: it uses
+MCP as its own *internal* in-process tool transport and seals it against external servers,
+so `https://fundos.vantedgeai.com/mcp` cannot be added to a QM deployment. FundOS ships a
+separate seven-skill pack for QM that calls the REST API instead, at
+[`integrations/qm/`](https://github.com/8vdx1/FundOS/tree/main/integrations/qm) in the
+FundOS repo.
+
 ## Support
 
 - Documentation: [www.kela.com/llms.txt](https://www.kela.com/llms.txt) (LLM-optimized FundOS reference)
