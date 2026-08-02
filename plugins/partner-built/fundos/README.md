@@ -46,7 +46,7 @@ This plugin connects to the **FundOS MCP server** which provides live access to 
 ### Endpoint
 
 ```
-https://mcp.kela.com/mcp
+https://fundos.vantedgeai.com/mcp
 ```
 
 ### Authentication
@@ -103,7 +103,7 @@ In your project's `.mcp.json`:
   "mcpServers": {
     "fundos": {
       "type": "http",
-      "url": "https://mcp.kela.com/mcp",
+      "url": "https://fundos.vantedgeai.com/mcp",
       "headers": {
         "Authorization": "Bearer vdr_<your-api-key>"
       }
@@ -115,7 +115,7 @@ In your project's `.mcp.json`:
 Or add via Claude Code settings for user-level access:
 
 ```bash
-claude mcp add fundos https://mcp.kela.com/mcp
+claude mcp add fundos https://fundos.vantedgeai.com/mcp
 ```
 
 ## Without the MCP Connector
