@@ -10,7 +10,7 @@ FundOS is built for the 4,000+ new emerging managers who launch funds every year
 
 ## What This Plugin Does
 
-This plugin packages FundOS's core fund operations workflows into 7 slash commands and 6 background skills. Each command orchestrates multiple FundOS MCP tool calls into a complete, GP-ready output — a formal capital call notice, a quarterly LP letter, a distribution waterfall with full math, or a diligence document checklist.
+This plugin packages FundOS's core fund operations workflows into 8 slash commands and 8 background skills. Each command orchestrates multiple FundOS MCP tool calls into a complete, GP-ready output — a formal capital call notice, a quarterly LP letter, a distribution waterfall with full math, or a diligence document checklist.
 
 Commands can run standalone (asking the user for inputs) or with live data pulled directly from FundOS when the MCP connector is configured.
 
@@ -25,6 +25,7 @@ Commands can run standalone (asking the user for inputs) or with live data pulle
 | `/fundos:lp-update` | Draft a formal LP communication for any fund event — exit, write-down, new investment, fund milestone |
 | `/fundos:vdr-checklist` | Generate a VDR document checklist for a deal at a given diligence stage (initial / full / closing) |
 | `/fundos:fund-snapshot` | Generate a one-page fund snapshot with capital metrics, DPI/RVPI/TVPI, and portfolio summary |
+| `/fundos:flux-pack` | Run month/quarter-end variance analysis and turn it into a board-ready pack with a footed gross-to-net bridge |
 
 ## Skills
 
@@ -38,6 +39,8 @@ Skills provide the background domain knowledge that Claude uses automatically wh
 | `waterfall-calculations` | User asks about distributions, carry, preferred return, or GP/LP split |
 | `covenant-monitoring` | User reviews portfolio company financials against loan terms |
 | `vdr-workflow` | User organizes a data room or generates a diligence document list |
+| `variance-commentary` | User closes a period, asks for flux/variance, or asks why a P&L line moved |
+| `board-dashboard` | User wants a board pack, dashboard, one-pager, or bridge/waterfall chart |
 
 ## MCP Connector
 
@@ -46,7 +49,7 @@ This plugin connects to the **FundOS MCP server** which provides live access to 
 ### Endpoint
 
 ```
-https://mcp.kela.com/mcp
+https://fundos.vantedgeai.com/mcp
 ```
 
 ### Authentication
@@ -87,11 +90,23 @@ All write operations (capital calls, covenant updates, document uploads) require
 ### From Claude Code CLI
 
 ```bash
-# Add the Anthropic FSI marketplace if not already added
-claude plugin marketplace add anthropics/financial-services-plugins
+claude plugin marketplace add anthropics/financial-services
+```
 
-# Install the FundOS plugin
+```bash
 claude plugin install fundos@claude-for-financial-services
+```
+
+### Alternative: the VantedgeAI marketplace
+
+Also published direct from the FundOS MCP developer hub:
+
+```bash
+claude plugin marketplace add 8vdx1/fundos-mcp
+```
+
+```bash
+claude plugin install fundos@vantedgeai
 ```
 
 ### Configure the MCP Connector
@@ -103,7 +118,7 @@ In your project's `.mcp.json`:
   "mcpServers": {
     "fundos": {
       "type": "http",
-      "url": "https://mcp.kela.com/mcp",
+      "url": "https://fundos.vantedgeai.com/mcp",
       "headers": {
         "Authorization": "Bearer vdr_<your-api-key>"
       }
@@ -115,7 +130,7 @@ In your project's `.mcp.json`:
 Or add via Claude Code settings for user-level access:
 
 ```bash
-claude mcp add fundos https://mcp.kela.com/mcp
+claude mcp add fundos https://fundos.vantedgeai.com/mcp
 ```
 
 ## Without the MCP Connector

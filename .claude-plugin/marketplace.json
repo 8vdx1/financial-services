@@ -126,6 +126,7 @@
     },
     {
       "name": "fundos",
+      "displayName": "FundOS by VantedgeAI",
       "source": "./plugins/partner-built/fundos",
       "description": "AI-native fund operations for emerging VC and private credit managers — capital calls, LP reporting, waterfall calculations, covenant monitoring, and VDR workflow"
     }
